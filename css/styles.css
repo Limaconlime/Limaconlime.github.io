@@ -1,0 +1,322 @@
+@import url('https://fonts.googleapis.com/css2?family=Fira+Sans:wght@400;500&family=Open+Sans:wght@500&family=Roboto+Mono:wght@300;400&display=swap');
+
+@import url('https://fonts.googleapis.com/css2?family=Barlow:ital,wght@0,600;1,600&family=DM+Sans:ital,opsz,wght@0,9..40,700;1,9..40,600&family=Fira+Sans:wght@500&family=Kanit:wght@500&family=Noto+Sans+KR:wght@700&family=Raleway:ital,wght@0,700;1,600&family=Roboto+Slab:wght@600&display=swap');
+
+/*
+Three fonts because two extras were already 
+selected on fonts.google so they were also imported 
+
+font-family: 'Fira Sans', sans-serif;
+font-family: 'Open Sans', sans-serif;
+font-family: 'Roboto Mono', monospace;
+*/
+
+/* 
+
+font-family: 'Barlow', sans-serif;
+font-family: 'DM Sans', sans-serif;
+font-family: 'Fira Sans', sans-serif;
+font-family: 'Kanit', sans-serif;
+font-family: 'Noto Sans KR', sans-serif;
+font-family: 'Raleway', sans-serif;
+font-family: 'Roboto Slab', serif;
+
+*/
+
+
+html {
+    font-family: 'Fira Sans', sans-serif;
+    color: #ffffff;
+    /* background-color: rgb(33, 33, 33); Save my eyes! */
+    background: linear-gradient(0deg, rgba(12,22,58,1) 0%, rgb(17 , 8, 113) 100%);
+    height: 100vh;
+}
+
+footer {
+    background-color: rgba(0, 0, 0, 0.2);
+    font-size: 0.8em;
+}
+
+.team1 { color: red; }
+
+.team2 { color: yellow; }
+
+#active-team { padding-left: 0.5ex; }
+
+
+
+/* ------------------ Headers and text ------------------ */
+.round-text {
+    font-size: 3em;
+    font-family: 'Fira Sans', sans-serif;
+    font-weight: bold;
+}
+
+#round-header { 
+    margin: auto;
+}
+
+.point-display {
+    display: inline-block;
+    font-size: 2.5em;
+    font-weight: bold;
+}
+
+#question {
+	text-align: center;
+	/* text-decoration: underline; */
+	text-decoration-color: lightblue;
+	text-decoration-style: solid;
+    font-size: 2.3em;
+}
+
+
+/* ------------------ Game ------------------ */
+#game {
+    margin: auto;
+    font-family: 'Open Sans', sans-serif;
+    background-color: rgba(0, 0, 60, 0.2);
+    border-radius: 50%;
+
+    overflow-block: visible;
+}
+
+.answer-box {
+    padding: 15px;
+
+    border-radius: 15px;
+    background-color: #1c1d21;
+    transform: scaleY(90%);
+}
+
+#game, .answer-box {
+    border-color: rgb(var(--border-rgb));
+    border-width: 4px;
+    border-style: solid;
+    
+    box-shadow:
+    0 0 8px     4px    rgba(var(--border-rgb), 0.4) inset,
+    0 0 8px     4px    rgba(var(--border-rgb), 0.4);
+/*  x y radius  spread  */
+}
+
+.column {
+    /* background-color: rgba(160, 0, 100, 0.2); */
+    margin: 0px 0px;
+    border-radius: 20px;
+}
+
+
+
+/* ------------------ Cards / Answers ------------------ */
+.card {
+    margin: 20px 10px;
+}
+
+.content, .cover {
+    border-radius: 10px;
+    border-color: rgb(225, 225, 225);
+    border-width: 5px;
+    border-style: double;
+
+    text-align: left;
+}
+
+.content {
+    background-color: rgba(161, 93, 161, 1);
+    background: linear-gradient(0deg, rgba(50,68,202,1) 0%,
+    rgba(101,132,226,1) 49%, rgba(12,22,58,1) 100%);
+
+    z-index: 1;
+}
+
+.cover {
+    background: radial-gradient(circle,
+    rgb(173, 216, 245) 0%, rgba(41,55,187,1) 100%);
+
+    z-index: 3;
+}
+
+.answer_points {
+    background: linear-gradient(0deg,rgb(151, 205, 241) 0%,
+     rgba(41,55,187,1) 100%);
+    
+    border-color:#cfe4ff;
+    border-width: 0px;
+    border-left-width: 2px;
+    border-style: solid;
+    border-radius: 5px;
+    border-top-left-radius: 0;
+    border-bottom-left-radius: 0;
+}
+
+.cover h2, .content p {
+    font-size: 200%;
+    margin: 0;
+    white-space: nowrap;
+
+    /* font-family: 'Barlow', sans-serif; */
+    font-family: 'DM Sans', sans-serif;
+    /* font-family: 'Fira Sans', sans-serif;
+    font-family: 'Kanit', sans-serif;
+    font-family: 'Noto Sans KR', sans-serif;
+    font-family: 'Raleway', sans-serif;
+    font-family: 'Roboto Slab', serif; */
+}
+
+/* ! TODO: Remove scaleX transformation, change font to achieve stretch effect if needed  */
+h2, .cover_number {
+    width: 60px;
+    height: 46px;
+}
+
+h2 {
+    border-radius: 50%;
+
+    /* That little highlight in the top left */
+    background-position: 13px -10px;
+	background: radial-gradient(circle,
+    rgb(169, 169, 242)   3%,
+    rgb(38 ,  50, 159)  50%,
+    rgb(17 ,   8, 113) 100%);
+
+    font-size: 220% !important;
+    font-family: 'Fira Sans', sans-serif !important;
+	text-align: center;
+}
+
+.cover_number {
+    border-radius: 50%;
+    background: linear-gradient(18deg, 
+    rgb(7, 7, 93) 50%,
+    rgb(229, 231, 255) 90%);
+    
+    padding: 4px;
+    border-width: 2px;
+    border-color: rgba(36, 84, 229, 1);
+    border-style: groove;
+}
+
+/* ------------------ Animation control ------------------ */
+.cover {
+    /* Keeps the final state when animation finishes */
+    animation-fill-mode: both;
+
+    /* animation-play-state: running; */
+    animation-duration: 1s;
+    animation-iteration-count: 1;
+
+    /* bezier approximates an: ease-in-out sine */
+    animation-timing-function: cubic-bezier(0.445, 0.05, 0.55, 0.95);
+}
+
+#left-column .uncovered .cover{
+    animation-name: slideLeft;
+    /* z-index: 0; */
+}
+
+#right-column .uncovered .cover {
+    animation-name: slideRight;
+}
+
+@keyframes slideup {
+    from {
+        filter: opacity(1);
+        transform: translateY(0);
+    }
+    
+    75% {
+        filter: opacity(0.6);
+        transform: translateY(-102%);
+        background-color: rgba(160, 0, 100, 0.2);
+    }
+
+    to {
+        filter: opacity(0.15);
+        transform: translateY(-110%);
+        background-color: rgba(160, 0, 100, 0.4);
+    }
+}
+
+@keyframes slideLeft {
+    from {
+        filter: opacity(1);
+        transform: translateX(0);
+    }
+
+    to {
+        filter: opacity(0);
+        transform: translateX(-110%);
+    }
+}
+
+@keyframes slideRight {
+    from {
+        filter: opacity(1);
+        transform: translateX(0);
+    }
+
+    to {
+        filter: opacity(0);
+        transform: translateX(110%);
+    }
+}
+
+.ray {
+    clip-path:polygon(0% 45%, 100% 0%, 100% 100%, 0% 55%);
+    transition: 4s;
+    transform: translateY(-50%) translateX(-50%) rotate(var(--angle)) translateY(50%) translateX(50%) translateY(-50%); 
+    width: 500px;
+    position: absolute;
+    height: 100px;
+    
+    z-index: -5;
+    opacity: 0.5;
+    background: linear-gradient(90deg,rgba(255,255,0,0.7), rgba(255,255,100,0));
+}
+
+.light {
+    bottom: -30px;
+    position: absolute;
+    animation-name: wave2;
+    animation-iteration-count: infinite;
+}
+
+.l1 {
+    left: 20%;
+    animation-duration: 7s;
+}
+
+.l2 {
+    right: 20%; 
+    animation-duration: 10s;
+}
+
+@keyframes wave {
+    0% {
+      --angle: -0deg;
+    }
+    
+    50% {
+      --angle: 20deg;
+    }
+    100% {
+      --angle: -30deg;
+    }
+  }
+
+@keyframes wave2 {
+    0% {
+        transform: rotate(-0deg);
+    }
+    
+    33% {
+        transform: rotate(20deg);
+    }
+    66% {
+        transform: rotate(-30deg);
+    }
+    100% {
+        transform: rotate(-0deg);
+    }
+}

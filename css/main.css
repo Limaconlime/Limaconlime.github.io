@@ -1,0 +1,8 @@
+@import "./structure.css";
+@import "./styles.css";
+
+:root {
+    --border-rgb: 255, 217, 160;
+    --game-width: 600px;
+    --angle: -90deg;
+}

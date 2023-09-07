@@ -1,28 +1,45 @@
 <!DOCTYPE html>
 <html>
   <head>
-    <meta charset="utf-8">
-    <title>Basic GoL attempt</title>
-    <style>
-      body {
-        position: absolute;
-        top: 0;
-        left: 0;
-        width: 100%;
-        height: 100%;
-        display: flex;
-        flex-direction: column;
-        align-items: center;
-        /* justify-content: center; */
-        background-color: rgb(0, 0, 59);
-      }
-      .everything {
-        display: contents;
-      }
-    </style>
-  <script defer src="index.js"></script></head>
+    <meta charset="UTF-8">
+    <link href="css/main.css" rel="stylesheet">
+    <title>TC Feud!</title>
+    <link rel="icon" type="image/x-icon" href="images/favicon.png">
+  </head>
   <body>
-    <noscript>This page contains webassembly and javascript content, please enable javascript in your browser.</noscript>
-    <div id="everything"></div>
+    <div id="points">
+      <div id="team1" class="point-display team1"><h1></h1></div>
+      <div id="team2" class="point-display team2"><h1></h1></div>
+    </div>
+  
+    <div id="team-changer"></div>
+
+    <div id="round-header">
+      <div id="round-title" class="round-text">You shouldn't see this.</div>
+      <div id="active-team" class="round-text"></div>
+    </div>
+
+    <h1 id="question">What have you broken?</h1>
+    <div id="game">
+      <div class="answer-box">
+
+        <div id="left-column" class="column">
+        </div>
+        <div id="right-column" class="column">
+        </div>
+
+      </div>
+    </div>
+    <script src="sketch.js"></script>
+    <script>start()</script>
+
   </body>
+  <div class="light l1">
+    <div class="ray"></div>
+  </div>
+
+  <div class="light l2"> 
+    <div class="ray"></div>
+  </div>
+  <footer><a href="https://www.flaticon.com/free-icons/quiz" title="quiz icons">Favicon created by Freepik - Flaticon</a></footer>
 </html>
