@@ -18,12 +18,24 @@
 */
 
 
+/*
+Plans:
+Add active points to store accumulated points
+  Center of the page
+  Along with active team
+Strike tracker
+  By team name?
+    Or active team?
+Worth noting that the other organisers don't seem to know exactly how to play either
+*/
+
 
 function start() {
   // const inputJson = JSON.parse(json);
   // let quiz = new Quiz(inputJson.rounds);
 
   addEventListener('keydown', (event) => {
+    // console.log(event.key);
     if (event.key === " ") { event.preventDefault(); updatePage(); } 
     else if (event.key == "t") {
       event.preventDefault();
@@ -35,17 +47,30 @@ function start() {
       }
       drawTeams();
     }
-    
+
+    else if (event.key === "Enter") {
+      event.preventDefault();
+      quiz.givePoints(quiz.currentRound().activePoints);
+      quiz.currentRound().activePoints = 0;
+      drawPoints();
+    }
+
+    else if (event.key === "s") {
+      event.preventDefault();
+      quiz.currentRound().strikes += 1;
+      quiz.currentRound().strikes %= 4;
+      drawStrikes();
+    }
+
     else if (event.key >= 0 && event.key <= 9) {
-      console.log(event.key);
       const answer = (event.key >= 1 && event.key <= 9) ? quiz.currentRound().answers[event.key - 1] : quiz.currentRound().answers[9];
       const index = event.key > 0? event.key - 1:9;
       answer.revealed = !answer.revealed; // Confusing but fewer lines so yay
       if (answer.revealed) { // Now equivalent to !answer.revealed
-        quiz.givePoints(answer.value)
+        quiz.addPoints(answer.value)
         revealAnswer(index < 5? document.getElementById("left-column").children[index]:document.getElementById("right-column").children[index - 5]);
       } else {
-        quiz.givePoints(-answer.value)
+        quiz.addPoints(-answer.value)
         drawAnswers(quiz.currentRound());
       }
     }
@@ -159,6 +184,7 @@ function drawPage() {
     round_title.innerHTML = `${round.name}:`;
     question.innerText = round.question;
   }
+
   // --------- Updating answers ---------
   drawAnswers(round);
   // --------- Updating points ---------
@@ -230,8 +256,23 @@ function drawTeams() {
 }
 
 function drawPoints() {
+  document.getElementById("active-points").innerHTML = `Points: ${quiz.currentRound().activePoints}`
   document.getElementById("team1").innerHTML = pointText(quiz.team1());
   document.getElementById("team2").innerHTML = pointText(quiz.team2());
+}
+
+function drawStrikes() {
+  const div = document.getElementById("strikes");
+  console.log(quiz.currentRound().strikes)
+  div.innerHTML = strikeHtml().repeat(quiz.currentRound().strikes);
+  div.getAnimations().forEach(animation => {
+    animation.cancel();
+    animation.play();    
+  });
+}
+
+function strikeHtml() {
+  return `<img class="strike" src="images/strike.webp" alt="X" />`
 }
 
 function createCard(answer, index) {
@@ -245,10 +286,10 @@ function createCard(answer, index) {
   answerDiv.addEventListener( "click", (_) => {
     answer.revealed = !answer.revealed; // Confusing but fewer lines so yay
     if (answer.revealed) { // Now equivalent to !answer.revealed
-      quiz.givePoints(answer.value)
+      quiz.addPoints(answer.value)
       revealAnswer(answerDiv);
     } else {
-      quiz.givePoints(-answer.value)
+      quiz.addPoints(-answer.value)
       drawAnswers(quiz.currentRound());
     }
   });
@@ -274,6 +315,8 @@ class Quiz {
     this.rounds = rounds.map(round => (
       {
         name: round.name,
+        activePoints: 0,
+        strikes: 0,
         question: round.question,
         answers: round.answers.map(answer => ({
           content: answer.content,
@@ -310,6 +353,11 @@ class Quiz {
 
   team2() {
     return this.teams[1]
+  }
+
+  addPoints(points) {
+    this.currentRound().activePoints += points;
+    drawPoints();
   }
 
   givePoints(points) {
